@@ -1,6 +1,6 @@
 const translations = {
     zh: {
-        'nav.title': 'NJUST、USTC、CPU龙舟队',
+        'nav.title': 'NJU、USTC、CPU龙舟队',
         'nav.about': '关于我们',
         'nav.achievements': '赛事成就',
         'nav.sponsors': '赞助商',
@@ -8,7 +8,7 @@ const translations = {
         'nav.signup': '报名加入',
 
         'hero.title': '三校联队龙舟队',
-        'hero.subtitle': 'NJUST、USTC、CPU新英格兰校友龙舟队',
+        'hero.subtitle': 'NJU、USTC、CPU新英格兰校友龙舟队 南大、中科大、药大',
         'hero.tagline': '三年破浪，从零到领奖台',
         'hero.cta': '了解更多',
         'hero.signup': '报名加入',
@@ -65,13 +65,13 @@ const translations = {
         'checkout.close': '关闭',
 
         'footer.name': '三校联队龙舟队',
-        'footer.org': 'NJUST、USTC、CPU新英格兰校友龙舟队',
+        'footer.org': 'NJU、USTC、CPU新英格兰校友龙舟队',
         'footer.tagline': '奋楫前行，奔赴更远的海',
         'footer.contact': 'New England Alumni Dragon Boat Team'
     },
 
     en: {
-        'nav.title': 'NJUST, USTC, CPU Dragon Boat',
+        'nav.title': 'NJU, USTC, CPU Dragon Boat',
         'nav.about': 'About',
         'nav.achievements': 'Achievements',
         'nav.sponsors': 'Sponsors',
@@ -136,7 +136,7 @@ const translations = {
         'checkout.close': 'Close',
 
         'footer.name': 'Three-School United Dragon Boat Team',
-        'footer.org': 'NJUST, USTC, CPU New England Alumni Dragon Boat Team',
+        'footer.org': 'NJU, USTC, CPU New England Alumni Dragon Boat Team',
         'footer.tagline': 'Paddling Forward, Towards Greater Horizons',
         'footer.contact': 'New England Alumni Dragon Boat Team'
     }

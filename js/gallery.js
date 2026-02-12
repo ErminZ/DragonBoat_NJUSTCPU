@@ -50,7 +50,14 @@ class Lightbox {
                 src: item.dataset.full,
                 type: item.dataset.type || 'image'
             });
-            item.addEventListener('click', () => this.open(index));
+            item.addEventListener('click', (e) => {
+                // Prevent video controls from blocking lightbox
+                if (e.target.tagName === 'VIDEO' || e.target.closest('video')) {
+                    e.stopPropagation();
+                    return;
+                }
+                this.open(index);
+            });
         });
     }
 
