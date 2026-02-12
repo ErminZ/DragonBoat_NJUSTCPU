@@ -1,13 +1,13 @@
 const translations = {
     zh: {
-        'nav.title': '双鸭山龙舟队',
+        'nav.title': '南京大学，中科大，药科大龙舟队',
         'nav.about': '关于我们',
         'nav.achievements': '赛事成就',
         'nav.merch': '队伍周边',
         'nav.signup': '报名加入',
 
-        'hero.title': '双鸭山龙舟队',
-        'hero.subtitle': '中山大学新英格兰校友龙舟队',
+        'hero.title': '三校联队',
+        'hero.subtitle': '药科大新英格兰校友龙舟队',
         'hero.tagline': '三年破浪，从零到领奖台',
         'hero.cta': '了解更多',
         'hero.signup': '报名加入',
@@ -54,14 +54,14 @@ const translations = {
     },
 
     en: {
-        'nav.title': 'SYSU Dragon Boat',
+        'nav.title': ' NJUST,USTC,CPU Dragon Boat',
         'nav.about': 'About',
         'nav.achievements': 'Achievements',
         'nav.merch': 'Merchandise',
         'nav.signup': 'Join Us',
 
-        'hero.title': 'SYSU Dragon Boat',
-        'hero.subtitle': 'Sun Yat-sen University New England Alumni Dragon Boat Team',
+        'hero.title': 'NJUST,USTC,CPU Dragon Boat',
+        'hero.subtitle': 'Nanjing University, University of Science and Technology of China, China Pharmaceutical University New England Alumni Dragon Boat Team',
         'hero.tagline': 'Three Years of Breaking Waves — From Zero to the Podium',
         'hero.cta': 'Learn More',
         'hero.signup': 'Join Us',
