@@ -95,7 +95,7 @@ const Cart = {
                 </div>
                 <div class="cart-item-actions">
                     <button class="cart-qty-btn" onclick="Cart.updateQty(${i}, -1)">−</button>
-                    <span class="cart-qty">${item.qt</span>
+                    <span class="cart-qty">${item.qty}</span>
                     <button class="cart-qty-btn" onclick="Cart.updateQty(${i}, 1)">+</button>
                     <button class="cart-remove-btn" onclick="Cart.remove(${i})">✕</button>
                 </div>
@@ -129,7 +129,7 @@ function closeCart() {
    Checkout Flow
    ======================================== */
 function openCheckout() {
-    if (Cart.items.ngth === 0) return;
+    if (Cart.items.length === 0) return;
     closeCart();
 
     const modal = document.getElementById('checkoutModal');
@@ -156,7 +156,7 @@ function closeCheckout() {
     document.getElementById('checkoutModal').classList.remove('active');
     document.getElementById('checkoutSuccess').style.display = 'none';
     document.getElementById('checkoutForm').style.display = 'block';
-    documeny.style.overflow = '';
+    document.body.style.overflow = '';
 }
 
 async function submitOrder(e) {
@@ -177,7 +177,7 @@ async function submitOrder(e) {
         `${item.name} (${item.nameEn})${item.size ? ' [' + item.size + ']' : ''} x${item.qty} = $${item.price * item.qty}`
     ).join('\n');
 
-    const message = `New Order from SYSU Dragon Boat Merch Store
+    const message = `New Order from Three-School United Dragon Boat Merch Store
 
 Customer: ${name}
 Contact: ${contact}
@@ -189,9 +189,9 @@ ${orderLines}
 Total: $${Cart.getTotal()}`;
 
     try {
-        const resp = await fetch('https://formsubmit.co/ajax/winstezzw@gmail.com', {
+        const resp = await fetch('https://formsubmit.co/ajax/erminzhao@hotmail.com', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/ 'Accept': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify({
                 name: name,
                 email: contact,
@@ -209,7 +209,7 @@ Total: $${Cart.getTotal()}`;
         }
     } catch (err) {
         // Fallback: open mailto
-        const mailto = `mailto:winstezzw@gmail.com?subject=${encodeURIComponent(`Merch Order - ${name}`)}&body=${encodeURIComponent(message)}`;
+        const mailto = `mailto:erminzhao@hotmail.com?subject=${encodeURIComponent(`Merch Order - ${name}`)}&body=${encodeURIComponent(message)}`;
         window.open(mailto);
         document.getElementById('checkoutForm').style.display = 'none';
         document.getElementById('checkoutSuccess').style.display = 'block';
@@ -217,7 +217,7 @@ Total: $${Cart.getTotal()}`;
     }
 
     submitBtn.disabled = false;
-    submitBtn.textContent = isZh ? 'ç¤下单' : 'Place Order';
+    submitBtn.textContent = isZh ? '确认下单' : 'Place Order';
 }
 
 /* ========================================
@@ -225,35 +225,38 @@ Total: $${Cart.getTotal()}`;
    ======================================== */
 const variantConfig = {
     size: {
-        titleZh: '选择尺码', titleEn: 'Select Size',
+        titleZh: '选择尺码',
+        titleEn: 'Select Size',
         options: [
             { value: 'S', label: 'S' },
-            { valu 'M' },
+            { value: 'M', label: 'M' },
             { value: 'L', label: 'L' },
             { value: 'XL', label: 'XL' },
             { value: '2XL', label: '2XL' }
         ]
     },
     color: {
-        titleZh: '选择颜色', titleEn: 'Select Color',
+        titleZh: '选择颜色',
+        titleEn: 'Select Color',
         options: [
-             '白/White', labelZh: '白色', labelEn: 'White' },
-            { value: '黑/Black', labelZh: '黑色', labelEn: 'Black' }
+            { value: 'white', labelZh: '白色', labelEn: 'White' },
+            { value: 'black', labelZh: '黑色', labelEn: 'Black' }
         ]
     },
     sticker: {
-        titleZh: '选择款式', titleEn: 'Select Design',
+        titleZh: '选择款式',
+        titleEn: 'Select Design',
         options: [
-            { vale', labelZh: 'Q版校门', labelEn: 'Campus Gate' },
-            { value: '校徽/Emblem', labelZh: '校徽', labelEn: 'SYSU Emblem' },
-            { value: '像素鸭/Pixel Duck', labelZh:xel Duck' },
-            { value: '经典Logo/Classic Logo', labelZh: '经典Logo', labelEn: 'Classic Logo' }
+            { value: 'gate', labelZh: 'Q版校门', labelEn: 'Campus Gate' },
+            { value: 'emblem', labelZh: '校徽', labelEn: 'Emblem' },
+            { value: 'pixel', labelZh: '像素鸭', labelEn: 'Pixel Duck' },
+            { value: 'logo', labelZh: '经典Logo', labelEn: 'Classic Logo' }
         ]
     }
 };
 
 /* ========================================
-   Add to Cart iant Selection
+   Add to Cart with Variant Selection
    ======================================== */
 function addToCart(id, name, nameEn, price, variantType) {
     if (!variantType) {

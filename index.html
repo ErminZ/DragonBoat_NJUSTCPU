@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>三校联队 | NJUST,USTC,CPU Dragon Boat Team</title>
     <meta name="description" content="三校联队 - NJUST,USTC,CPU New England Alumni Dragon Boat Team">
-    <link rel="icon" href="images/logo/sysu-logo.png" type="image/png">
+    <link rel="icon" href="images/logo/logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&display=swap" rel="stylesheet">
@@ -16,12 +16,13 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#hero" class="nav-logo">
-                <img src="images/logo/sysu-logo.png" alt="SYSU Logo">
-             /span>
+                <img src="images/logo/logo.png" alt="Team Logo">
+                <span>三校联队</span>
             </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#about" data-i18n="nav.about">关于我们</a></li>
                 <li><a href="#achievements" data-i18n="nav.achievements">赛事成就</a></li>
+                <li><a href="#sponsors" data-i18n="nav.sponsors">赞助商</a></li>
                 <li><a href="#merch" data-i18n="nav.merch">队伍周边</a></li>
                 <li><a href="https://www.wjx.top/vm/tZ8qdpC.aspx" target="_blank" class="nav-signup" data-i18n="nav.signup">报名加入</a></li>
             </ul>
@@ -30,7 +31,7 @@
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
                     <span class="cart-badge" id="cartBadge">0</span>
                 </button>
-                <button class="lang-tog"Switch language">EN</button>
+                <button class="lang-toggle" onclick="toggleLanguage()">EN</button>
                 <button class="hamburger" id="hamburger" aria-label="Toggle menu">
                     <span></span><span></span><span></span>
                 </button>
@@ -41,9 +42,10 @@
     <!-- Hero Section -->
     <section class="hero" id="hero">
         <div class="hero-overlay"></div>
+        <img src="images/hero/2025group.JPG" alt="Team" class="hero-bg" loading="lazy">
         <div class="hero-content">
-            <h1 data-i18n="hero.title">双鸭山龙舟队</h1>
-            <p class="hero-subtitle" data-i18n="hero.subtitle">中山大学新英格兰校友龙舟队</p>
+            <h1 data-i18n="hero.title">三校联队龙舟队</h1>
+            <p class="hero-subtitle" data-i18n="hero.subtitle">NJUST、USTC、CPU新英格兰校友龙舟队</p>
             <p class="hero-tagline" data-i18n="hero.tagline">三年破浪，从零到领奖台</p>
             <a href="#about" class="hero-cta" data-i18n="hero.cta">了解更多</a>
             <a href="https://www.wjx.top/vm/tZ8qdpC.aspx" target="_blank" class="hero-cta hero-cta-signup" data-i18n="hero.signup">报名加入</a>
@@ -53,10 +55,17 @@
     <!-- About Section -->
     <section class="section about" id="about">
         <div class="container">
-        <div class="about-grid">
+            <div class="about-grid">
                 <div class="about-text">
-                    <p data-i18n="about.p1">2023年，中山大学新英格兰校友会的一群校友因热血与热爱在波士顿的查尔斯河畔集结，组建了「双鸭山龙舟队」，从零起步划响了属于中大的第一桨。大家心中都有一个朴素的念头——中大人，也应该有属于自己的龙舟队，让中大绿在异乡河面上飘扬，成为凝聚校友情感的纽带。</p>
-                    <p data-i18n="about.p2">三年间，队伍从E组初露锋芒，到B组稳居强手之列，再到刷新队史纪录，步步为营、节节攀升；三年间，越来越多的中大校友加入其中，让这支队伍不断壮大，也让校友情感在异乡蓬勃生长。今年夏天，他们终于在罗德岛的赛场上首次登上领奖台，斩获队史第一枚金牌——从无到有，从追赶到争冠，三年时间，他们用汗水与坚持，让中大精神在海外异乡的河面上闪耀eline-item animate-on-scroll">
+                    <p data-i18n="about.p1">2023年，新英格兰地区校友因热血与热爱在波士顿的查尔斯河畔集结，组建了三校联队龙舟队，从零起步划响了属于我们的第一桨。大家心中都有一个朴素的念头——我们也应该有属于自己的龙舟队，让校友情感在异乡河面上飘扬，成为凝聚校友的纽带。</p>
+                    <p data-i18n="about.p2">三年间，队伍从初露锋芒，到稳居强手之列，再到刷新队史纪录，步步为营、节节攀升；三年间，越来越多的校友加入其中，让这支队伍不断壮大，也让校友情感在异乡蓬勃生长。今年夏天，他们终于在罗德岛的赛场上首次登上领奖台，斩获队史第一枚金牌——从无到有，从追赶到争冠，三年时间，他们用汗水与坚持，让校友精神在海外异乡的河面上闪耀。</p>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="timeline" id="achievements">
+                <!-- 2023 -->
+                <div class="timeline-item animate-on-scroll">
                     <div class="timeline-marker">2023</div>
                     <div class="timeline-content">
                         <h3 data-i18n="timeline.2023.title">三校联队的第一桨，突破重围</h3>
@@ -68,8 +77,7 @@
                             </div>
                             <div class="stat">
                                 <span class="stat-value">33/64</span>
-                                <t-value">E→C</span>
-                                <span class="stat-label" data-i18n="timeline.2023.stat3">连升三组</span>
+                                <span class="stat-label" data-i18n="timeline.2023.stat2">排名进步</span>
                             </div>
                         </div>
                     </div>
@@ -80,13 +88,16 @@
                     <div class="timeline-marker">2024</div>
                     <div class="timeline-content">
                         <h3 data-i18n="timeline.2024.title">稳步进阶，实力初现</h3>
-                        <p data-i18n="timeline.2024.desc">第二年，双鸭山龙舟队再次整装出征波士顿龙舟赛。这一次，他们不再是稚嫩的新手队，而是一支目标明确、分工有序、节奏整齐的战斗集体。队伍从去年的C组一路晋升到竞争激烈的B组，稳居赛会中上游。</p>
+                        <p data-i18n="timeline.2024.desc">第二年，龙舟队再次整装出征。这一次，他们不再是稚嫩的新手队，而是一支目标明确、分工有序、节奏整齐的战斗集体。队伍稳居赛会中上游，展现出明显的进步。</p>
                         <div class="timeline-stats">
                             <div class="stat">
-                                <span class>
-                                <span class="stat-value">C→B</span>
-                                <span class="stat-label" data-i18n="timeline.2024.stat2">晋升B组</span>
-                    </div>
+                                <span class="stat-value">2:10</span>
+                                <span class="stat-label" data-i18n="timeline.2024.stat1">500米用时</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">↑23秒</span>
+                                <span class="stat-label" data-i18n="timeline.2024.stat2">较去年提升</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -96,51 +107,107 @@
                     <div class="timeline-marker">2025</div>
                     <div class="timeline-content">
                         <h3 data-i18n="timeline.2025.title">突破纪录，首夺金牌</h3>
-                        <p data-i18n="timeline.202队真正意义上的飞跃之年。六月的波士顿龙舟赛，500米项目用时比去年快了整整23秒，一举刷新队史最佳纪录；在最多参赛队伍的一届，共72支队中总排名从去年的第24名跃升到第15名。</p>
-                   <div class="timeline-stats">
+                        <p data-i18n="timeline.2025.desc">队伍真正意义上的飞跃之年。六月的波士顿龙舟赛，500米项目用时创造队史新高；在最多参赛队伍的一届，共72支队中总排名显著提升。最终在罗德岛赛场首次登上领奖台，斩获队史第一枚金牌！</p>
+                        <div class="timeline-stats">
                             <div class="stat">
                                 <span class="stat-value">52.63s</span>
-                                <span class="stat-label" data-i18n="timeline.2025.stat1">200米队史纪录</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-value">2:10</span>
-                                <span class="stat-label" data-i18n="timeline.">500米用时</span>
+                                <span class="stat-label" data-i18n="timeline.2025.stat1">200米纪录</span>
                             </div>
                             <div class="stat">
                                 <span class="stat-value">15/72</span>
-                                <span class="stat-label" data-i18n="timeline.2at3">波士顿排名</span>
+                                <span class="stat-label" data-i18n="timeline.2025.stat2">波士顿排名</span>
                             </div>
                             <div class="stat highlight">
                                 <span class="stat-value">🥇</span>
-                    <span class="stat-label" data-i18n="timeline.2025.stat4">罗德岛金牌</span>
+                                <span class="stat-label" data-i18n="timeline.2025.stat3">罗德岛金牌</span>
                             </div>
                         </div>
-                    </d          </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Photo Gallery -->
             <h3 class="gallery-title" data-i18n="gallery.title">比赛精彩瞬间</h3>
             <div class="gallery-grid">
-                <div class="gallery-item animate-on-sfull="images/gallery/full/boston_25067467.jpg">
-                    <img src="images/gallery/thumbs/boston_25067467.jpg" alt="Boston Dragon Boat 2025" loading="lazy">
+                <!-- 2024 Training Video -->
+                <div class="gallery-item animate-on-scroll video-item" data-full="images/gallery/full/2024-stage.MP4" data-type="video">
+                    <video src="images/gallery/full/2024-stage.MP4" alt="2024舞台表演" loading="lazy" controls style="width: 100%; height: 100%; object-fit: cover;"></video>
+                    <div class="video-play-icon">▶</div>
                 </div>
-                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/boston_25067536.jpg">
-                    <img src="images/gallery/thumbs/boston_25067536.jpg" alt="Boston Dragon Boat 2025" loading="lazy">
+
+                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2024training.JPG">
+                    <img src="images/gallery/full/2024training.JPG" alt="2024训练" loading="lazy">
                 </div>
-                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/boston_25067597__1_.jpg">
-                    <img src="images/gallery/thumbs/boston_25067597__1_.jpg" alt="Boston Dragon Boat 2025" loading="lazy">
+                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2024group.JPG">
+                    <img src="images/gallery/full/2024group.JPG" alt="2024合照" loading="lazy">
                 </div>
-                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/boston_DSC02439.jpg">
-                    <img src="images/gallery/thumbs/boston_DSC02439.jpg" alt="Boston Dragon Boat 2025" loading="lazy">
+                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2024race.JPG">
+                    <img src="images/gallery/full/2024race.JPG" alt="2024比赛" loading="lazy">
                 </div>
-                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/scrimmage_DSCF6092.jpg">
-                    <img src="images/gallery/thumbs/scrimmage_DSCF6092.jpg" alt="Scrimmage 2025" loading="lazy">
+                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2024group_stage.JPG">
+                    <img src="images/gallery/full/2024group_stage.JPG" alt="2024舞台合照" loading="lazy">
                 </div>
-                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/scrimmage_DSCF6182.jpg">
-                    <img src="images/gallery/thumbs/scrimmage_DSCF6182.jpg" alt="Scrimmage 2025" loading="lazy">
+                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2024-medal.JPG">
+                    <img src="images/gallery/full/2024-medal.JPG" alt="2024奖牌" loading="lazy">
                 </div>
-                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/scrimmage_DSCF6196.jpg">
-                    <img src="images/gallery/thumbs/scrimmage_DSCF6196.jpg" alt="Scrimmage 2025" loading="lazy">
+                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2024winning.JPG">
+                    <img src="images/gallery/full/2024winning.JPG" alt="2024胜利" loading="lazy">
+                </div>
+                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2024_stage2.JPG">
+                    <img src="images/gallery/full/2024_stage2.JPG" alt="2024舞台" loading="lazy">
+                </div>
+                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2025group.JPG">
+                    <img src="images/gallery/full/2025group.JPG" alt="2025合照" loading="lazy">
+                </div>
+                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2025CPU.JPG">
+                    <img src="images/gallery/full/2025CPU.JPG" alt="2025CPU" loading="lazy">
+                </div>
+                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2025-boat.JPG">
+                    <img src="images/gallery/full/2025-boat.JPG" alt="2025龙舟" loading="lazy">
+                </div>
+
+                <!-- 2025 Training Video -->
+                <div class="gallery-item animate-on-scroll video-item" data-full="images/gallery/full/2025-training.MOV" data-type="video">
+                    <video src="images/gallery/full/2025-training.MOV" alt="2025训练" loading="lazy" controls style="width: 100%; height: 100%; object-fit: cover;"></video>
+                    <div class="video-play-icon">▶</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sponsors Section -->
+    <section class="section sponsors" id="sponsors">
+        <div class="container">
+            <h2 class="section-title" data-i18n="sponsors.title">我们的赞助商</h2>
+            <p class="sponsors-subtitle" data-i18n="sponsors.subtitle">感谢以下赞助商的支持</p>
+            
+            <div class="sponsors-grid">
+                <!-- Sponsor 1 -->
+                <div class="sponsor-card animate-on-scroll">
+                    <div class="sponsor-logo">
+                        <img src="images/merch/sponsor1.JPG" alt="Sponsor" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Sponsor 2 -->
+                <div class="sponsor-card animate-on-scroll">
+                    <div class="sponsor-logo">
+                        <img src="images/merch/sponsor2.JPG" alt="Sponsor" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Sponsor 3 -->
+                <div class="sponsor-card animate-on-scroll">
+                    <div class="sponsor-logo">
+                        <img src="images/merch/sponsor3.PNG" alt="Sponsor" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Sponsor 4 -->
+                <div class="sponsor-card animate-on-scroll">
+                    <div class="sponsor-logo">
+                        <img src="images/merch/sponsor4.JPG" alt="Sponsor" loading="lazy">
+                    </div>
                 </div>
             </div>
         </div>
@@ -151,116 +218,33 @@
         <div class="container">
             <h2 class="section-title" data-i18n="merch.title">队伍周边</h2>
             <div class="merch-grid">
-                <!-- Transfer Stick                <div class="merch-card animate-on-scroll">
-                    <div class="merch-image merch-zoomable" onclick="zoomMerch(this,event)">
-                        <img src="images/merch/transfer-stickers.png" alt="转印贴纸" loading="la                 </div>
-                    <div class="merch-info">
-                        <h4 data-i18n="merch.transfer.name">转印贴纸</h4>
-                        <p class="merch-pr/p>
-                        <button class="add-to-cart-btn" onclick="addToCart('transfer','转印贴纸','Transfer Stickers',5,'sticker')" data-i18n="merch.addToCart">加入购物车<           </div>
-                </div>
-
-                <!-- Regular Stickers -->
-                <div class="merch-card animate-on-scroll">
-                    <div class="merch-image merch-sticker-grid merch-zoomable" onclick="zoomMerch(this,event)">
-                        <img src="images/merch/sticker-gate.png" alt="贴纸" loading="lazy">
-                        <img src="images/merch/sticker-emblem.png" alt="贴纸g="lazy">
-                        <img src="images/merch/sticker-pixel.png" alt="贴纸" loading="lazy">
-                        <img src="images/merch/sticker-logo.png" alt="贴纸" loading="lazy">
-                    </div>
-                    <div class="merch-info">
-                        <h4 data-i18n="merch.stickers.name">普通贴纸</h4>
-                        <p cl">$5</p>
-                        <button class="add-to-cart-btn" onclick="addToCart('sticker','普通贴纸','Vinyl Sticker',5,'sticker')" data-i18n="merch.addToCart">加入购物车</but       </div>
-                </div>
-
-                <!-- Bucket Hat -->
-                <div class="merch-card animate-on-scroll">
-                    <div class="merch-image merch-dual merch-zoomable" onclick="zoomMerch(this,event)">
-                        <img src="images/merch/bucket-hat-white.jpg" alt="渔夫帽白" loading="lazy">
-                        <img src="images/merch/bucket-hat-black.jpg" alt="渔夫帽黑"                     </div>
-                    <div class="merch-info">
-                        <h4 data-i18n="merch.hat.name">渔夫帽</h4>
-                        <p class="merch-price">$25</p>
-                        <button class="add-to-cart-btn" onclick="addToCart('hat','渔夫帽','Bucket Hat',25,'color')"merch.addToCart">加入购物车</button>
-                    </div>
-                </div>
-
-                <!-- Baseball Cap -->
-                <div class="merch-card animate-on-scroll">
-                    <div class="merch-image merch-zoomable" onmMerch(this,event)">
-                        <img src="images/merch/baseball-cap.png" alt="棒球帽" loading="lazy">
-                    </div>
-                    <div class="merch-info">
-                        <h4 data-i18n="merch.cap.name">棒球å                  <p class="merch-price">$25</p>
-                        <button class="add-to-cart-btn" onclick="addToCart('cap','棒球帽','Baseball Cap',25,'color')" data-i18n="merch.art">加入购物车</button>
-                    </div>
-                </div>
-
-                <!-- Long Sleeve Jersey -->
-      <div class="merch-card animate-on-scroll">
-                    <div class="merch-image merch-zoomable" onclick="zoomMerch(this,event)">
-                        <img src="images/merch/jersey-long.jpg" alt="长袖队服" loading="lazy">
-                    </div>
-                    <div class="merch-info">
-                        <h4 data-i18n="merch.jerseyLong.name">长è                    <p class="merch-price">$35</p>
-                        <a href="images/merch/jersey-long-sizes.jpg" target="_blank" class="size-chart-link" data-i18n="merch.sizeChart">查看尺码表</a>
-                        <button class="add-to-cart-btn" onclick="addToCart('jersey-long','长袖队服','Long Sleeve Jersey',35,'size')" data-i18n="merch.addToCart">加入购物车</button>
-                    </div>
-                </div>
-
-                <!-- Short Sleeve Jersey -->
-        rd animate-on-scroll">
-                    <div class="merch-image merch-zoomable" onclick="zoomMerch(this,event)">
-                        <img src="images/merch/jersey-short.png" alt="短服" loading="lazy">
-                    </div>
-                    <div class="merch-info">
-                        <h4 data-i18n="merch.jerseyShort.name">短袖队服</h4>
-               p class="merch-price">$25</p>
-                        <a href="images/merch/jersey-short-sizes.png" target="_blank" class="size-chart-link" data-i18n="merch.sizeChart">查看尺码表</a>
-              <button class="add-to-cart-btn" onclick="addToCart('jersey-short','短袖队服','Short Sleeve Jersey',25,'size')" data-i18n="merch.addToCart">加入购物车</button>
-        
-                </div>
-
-                <!-- Windbreaker -->
+                <!-- Jersey -->
                 <div class="merch-card animate-on-scroll">
                     <div class="merch-image merch-zoomable" onclick="zoomMerch(this,event)">
-                        <img src="images/merch/windbreaker.jpg" alt="冲锋衣" loading="lazy">
+                        <img src="images/merch/Jersey.JPG" alt="队服" loading="lazy">
                     </div>
                     <div class="merch-info">
-                        <h4 data-i18n="merch.windbreaker.na衣</h4>
-                        <p class="merch-price">$75</p>
-                        <a href="images/merch/windbreaker-sizes.jpg" target="_blank" class="size-chart-link" data-i18n="merch.sizeChart">查看尺码表</a>
-                        <buttonto-cart-btn" onclick="addToCart('windbreaker','冲锋衣','Windbreaker',75,'size')" data-i18n="merch.addToCart">加入购物车</button>
+                        <h4 data-i18n="merch.jersey.name">队服</h4>
+                        <p class="merch-price">$35</p>
+                        <button class="add-to-cart-btn" onclick="addToCart('jersey','队服','Jersey',35,'size')" data-i18n="merch.addToCart">加入购物车</button>
                     </div>
                 </div>
-
-                <!-- Fridge Magnet - Dragon -->
-                h-card animate-on-scroll">
-                    <div class="merch-image merch-zoomable" onclick="zoomMerch(this,event)">
-                        <img src="images/merch/magnet-dragon.png" alt="冰箱贴 - 龙舟队" loading="lazy">
-                    </div>
-                    <div class="merch-info">
-                        <h4 data-i18n="merch.magnet.dragon">冰箱贴 - 龙è         <p class="merch-price">$10</p>
-                        <button class="add-to-cart-btn" onclick="addToCart('magnet-dragon','冰箱贴-龙舟队','Magnet - Dragon Boat',10,false)" data-i18n="merch.addToCart">加入购物车</button>
-                    </div>
-                </div>
-
             </div>
-   ion>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container footer-content">
             <div class="footer-logo">
-                <img src="images/logo/sysu-logo.png" alt="SYSU Logo">
+                <img src="images/logo/logo.png" alt="Team Logo">
                 <div>
-                    <p class="footer-name" data-i18n="footer.name">双鸭山龙舟队</p>
-                    <p class="footer-org" data-i18n="中山大学新英格兰校友龙舟队</p>
+                    <p class="footer-name" data-i18n="footer.name">三校联队龙舟队</p>
+                    <p class="footer-org" data-i18n="footer.org">NJUST、USTC、CPU新英格兰校友龙舟队</p>
                 </div>
             </div>
             <p class="footer-tagline" data-i18n="footer.tagline">奋楫前行，奔赴更远的海</p>
-YSU New England Alumni Dragon Boat Team</p>
+            <p class="footer-contact" data-i18n="footer.contact">New England Alumni Dragon Boat Team</p>
         </div>
     </footer>
 
@@ -284,20 +268,20 @@ YSU New England Alumni Dragon Boat Team</p>
 
     <!-- Cart Drawer -->
     <div class="cart-drawer" id="cartDrawer">
-        <div class="cart-d">
+        <div class="cart-drawer-header">
             <h3 data-i18n="cart.title">购物车</h3>
             <button class="cart-drawer-close" onclick="closeCart()">&times;</button>
         </div>
-        <div class="cart-drawer-
+        <div class="cart-drawer-content">
             <p class="cart-empty" id="cartEmpty" data-i18n="cart.empty">购物车是空的</p>
             <div id="cartItems"></div>
         </div>
         <div class="cart-drawer-footer">
             <div class="cart-total-row">
-                <spa"cart.total">合计</span>
+                <span data-i18n="cart.total">合计</span>
                 <span id="cartTotal">$0</span>
             </div>
-            <button class="cart-checkout-btn" id="cartCheckoutBtn" onclick="openCheckout()" datan="cart.checkout">去结算</button>
+            <button class="cart-checkout-btn" id="cartCheckoutBtn" onclick="openCheckout()" data-i18n="cart.checkout">去结算</button>
         </div>
     </div>
     <div class="cart-drawer-overlay" onclick="closeCart()"></div>
@@ -305,19 +289,19 @@ YSU New England Alumni Dragon Boat Team</p>
     <!-- Variant Selector Modal -->
     <div class="modal-overlay" id="variantModal" onclick="if(event.target===this)closeVariantModal()">
         <div class="modal-box">
-            <hvariantModalTitle">选择</h4>
+            <h4 id="variantModalTitle">选择</h4>
             <div class="variant-options" id="variantOptions"></div>
-            <button class="modal-cancel" onclick="closeVariantModal()" data-i18n="cart.can>取消</button>
+            <button class="modal-cancel" onclick="closeVariantModal()" data-i18n="cart.cancel">取消</button>
         </div>
     </div>
 
     <!-- Checkout Modal -->
     <div class="modal-overlay" id="checkoutModal" onclick="if(event.target===this)closeCheckout()">
-        <div clasodal-box checkout-box">
+        <div class="modal-box checkout-box">
             <button class="modal-close-btn" onclick="closeCheckout()">&times;</button>
             <h3 data-i18n="checkout.title">确认订单</h3>
 
-            <divckoutForm">
+            <div class="checkoutForm">
                 <div id="checkoutSummary" class="checkout-summary"></div>
 
                 <form onsubmit="submitOrder(event)">
@@ -326,40 +310,44 @@ YSU New England Alumni Dragon Boat Team</p>
                         <input type="text" name="customerName" required>
                     </div>
                     <div class="form-group">
-                        <label data-i18heckout.contact">邮箱 / 手机号</label>
+                        <label data-i18n="checkout.contact">邮箱 / 手机号</label>
                         <input type="text" name="customerContact" required>
                     </div>
-                    <div class="form-group                 <label data-i18n="checkout.payMethod">付款方式</label>
+                    <div class="form-group">
+                        <label data-i18n="checkout.payMethod">付款方式</label>
                         <select name="paymentMethod" required>
                             <option value="Venmo">Venmo</option>
-                            <option value="Zelle/option>
+                            <option value="Zelle">Zelle</option>
                         </select>
                     </div>
 
                     <div class="payment-info">
                         <div class="payment-option">
                             <h5>Venmo</h5>
-                            <p>@tingxu1994</p>
-                            <img src="images/merch/venmo-qr.png" alt="Venmo QR" class="payment-qr">
+                            <p>@Ermin-Zhao</p>
                         </div>
                         <div class="payment-option">
                             <h5>Zelle</h5>
-                            <p>Ting Xu</p>
-                            <p>3416008302</p>
+                            <p>Ermin Zhao</p>
+                            <p>erminzhao@hotmail.com</p>
                         </div>
                     </div>
 
-                    <p class="checkout-note" data-i18n="checkout.note">请先通过 Venmo 或 Zelle 完成付款，再ç/p>
+                    <p class="checkout-note" data-i18n="checkout.note">请先通过 Venmo 或 Zelle 完成付款，再提交订单。</p>
                     <button type="submit" class="checkout-submit-btn" data-i18n="checkout.submit">确认下单</button>
                 </form>
             </div>
 
-            <div id=tSuccess" style="display:none" class="checkout-success">
+            <div id="checkoutSuccess" style="display:none" class="checkout-success">
                 <div class="success-icon">✓</div>
                 <h4 data-i18n="checkout.successTitle">订单已提交！</h4>
-  <p data-i18n="checkout.successMsg">我们已收到您的订单信息，确认付款后会尽快安排发货。</p>
+                <p data-i18n="checkout.successMsg">我们已收到您的订单信息，确认付款后会尽快安排发货。</p>
                 <button onclick="closeCheckout()" class="checkout-submit-btn" data-i18n="checkout.close">关闭</button>
-            </di.js"></script>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/i18n.js"></script>
     <script src="js/cart.js"></script>
     <script src="js/gallery.js"></script>
     <script src="js/main.js"></script>
