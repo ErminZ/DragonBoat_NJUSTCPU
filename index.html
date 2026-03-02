@@ -10,6 +10,63 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ── Lightbox ── */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.92);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox-content img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 6px;
+            display: block;
+        }
+        .lightbox-close {
+            position: fixed;
+            top: 18px; right: 24px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 2.4rem;
+            cursor: pointer;
+            z-index: 10000;
+            line-height: 1;
+        }
+        .lightbox-prev, .lightbox-next {
+            position: fixed;
+            top: 50%; transform: translateY(-50%);
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: #fff;
+            font-size: 1.8rem;
+            padding: 12px 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            z-index: 10000;
+        }
+        .lightbox-prev { left: 16px; }
+        .lightbox-next { right: 16px; }
+        #galleryGrid .gallery-item[data-type="image"] { cursor: pointer; }
+
+        /* ── Bilingual ── */
+        [data-bilang].lang-hidden { display: none !important; }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -20,18 +77,18 @@
                 <span>三校联队</span>
             </a>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#about" data-i18n="nav.about">关于我们</a></li>
-                <li><a href="#achievements" data-i18n="nav.achievements">赛事成就</a></li>
-                <li><a href="#sponsors" data-i18n="nav.sponsors">赞助商</a></li>
-                <li><a href="#merch" data-i18n="nav.merch">队伍周边</a></li>
-                <li><a href="https://forms.gle/a2DTriWuzZFnWLLSA" target="_blank" class="nav-signup" data-i18n="nav.signup">报名加入</a></li>
+                <li><a href="#about"><span data-bilang="zh">关于我们</span><span data-bilang="en" class="lang-hidden">About</span></a></li>
+                <li><a href="#achievements"><span data-bilang="zh">赛事成就</span><span data-bilang="en" class="lang-hidden">Achievements</span></a></li>
+                <li><a href="#sponsors"><span data-bilang="zh">赞助商</span><span data-bilang="en" class="lang-hidden">Sponsors</span></a></li>
+                <li><a href="#merch"><span data-bilang="zh">队伍周边</span><span data-bilang="en" class="lang-hidden">Merch</span></a></li>
+                <li><a href="https://forms.gle/a2DTriWuzZFnWLLSA" target="_blank" class="nav-signup"><span data-bilang="zh">报名加入</span><span data-bilang="en" class="lang-hidden">Join Us</span></a></li>
             </ul>
             <div class="nav-right">
                 <button class="cart-btn" id="cartBtn" onclick="toggleCart()" aria-label="Cart">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
                     <span class="cart-badge" id="cartBadge">0</span>
                 </button>
-                <button class="lang-toggle" onclick="toggleLanguage()">EN</button>
+                <button class="lang-toggle" id="langToggleBtn" onclick="toggleLanguage()">EN</button>
                 <button class="hamburger" id="hamburger" aria-label="Toggle menu">
                     <span></span><span></span><span></span>
                 </button>
@@ -44,11 +101,24 @@
         <div class="hero-overlay"></div>
         <img src="images/hero/2025group.JPG" alt="Team" class="hero-bg" loading="lazy">
         <div class="hero-content">
-            <h1 data-i18n="hero.title">三校联队龙舟队</h1>
-            <p class="hero-subtitle" data-i18n="hero.subtitle">NJU、USTC、CPU新英格兰校友龙舟队<br><span class="school-names">南大、中科大、药大</span></p>
-            <p class="hero-tagline" data-i18n="hero.tagline">三年破浪，从零到领奖台</p>
-            <a href="#about" class="hero-cta" data-i18n="hero.cta">了解更多</a>
-            <a href="https://forms.gle/a2DTriWuzZFnWLLSA" target="_blank" class="hero-cta hero-cta-signup" data-i18n="hero.signup">报名加入</a>
+            <h1>
+                <span data-bilang="zh">药大南大中科大三校联合龙舟队</span>
+                <span data-bilang="en" class="lang-hidden">CPU · NJU · USTC Alumni Dragon Boat Team</span>
+            </h1>
+            <p class="hero-subtitle">
+                <span data-bilang="zh">2026 招新启航</span>
+                <span data-bilang="en" class="lang-hidden">2026 Recruitment Open</span>
+            </p>
+            <p class="hero-tagline">
+                <span data-bilang="zh">三年奖牌路，今朝再出发！</span>
+                <span data-bilang="en" class="lang-hidden">Three years of medals — now we go further!</span>
+            </p>
+            <a href="#about" class="hero-cta">
+                <span data-bilang="zh">了解更多</span><span data-bilang="en" class="lang-hidden">Learn More</span>
+            </a>
+            <a href="https://forms.gle/a2DTriWuzZFnWLLSA" target="_blank" class="hero-cta hero-cta-signup">
+                <span data-bilang="zh">报名加入</span><span data-bilang="en" class="lang-hidden">Sign Up</span>
+            </a>
         </div>
     </section>
 
@@ -57,46 +127,28 @@
         <div class="container">
             <div class="about-grid">
                 <div class="about-text">
-                    <p data-i18n="about.p1">2023年，新英格兰地区校友因热血与热爱在波士顿的查尔斯河畔集结，组建了三校联队龙舟队，从零起步划响了属于我们的第一桨。大家心中都有一个朴素的念头——我们也应该有属于自己的龙舟队，让校友情感在异乡河面上飘扬，成为凝聚校友的纽带。</p>
-                    <p data-i18n="about.p2">三年间，队伍从初露锋芒，到稳居强手之列，再到刷新队史纪录，步步为营、节节攀升；三年间，越来越多的校友加入其中，让这支队伍不断壮大，也让校友情感在异乡蓬勃生长。今年夏天，他们终于在罗德岛的赛场上首次登上领奖台，斩获队史第一枚金牌——从无到有，从追赶到争冠，三年时间，他们用汗水与坚持，让校友精神在海外异乡的河面上闪耀。</p>
+                    <p data-bilang="zh">疫情之前，药大联合南大便已是波士顿龙舟赛的常驻劲旅。多年连续参赛、屡获佳绩，是校友圈中有口皆碑的高质量社团——不止为奖牌，更为那份"每年夏天，水上相见"的默契。</p>
+                    <p data-bilang="en" class="lang-hidden">Before the pandemic, CPU and NJU alumni had already established themselves as a perennial force at the Boston Dragon Boat Festival. Years of consecutive competition and consistent results made the team a beloved institution in the alumni community — not just for the medals, but for that unspoken tradition: meeting on the water every summer.</p>
+                    <p data-bilang="zh">三年间，队伍从初露锋芒，到稳居强手之列，再到刷新队史纪录，步步为营、节节攀升；越来越多的校友加入其中，让这支队伍不断壮大，也让校友情感在异乡蓬勃生长。</p>
+                    <p data-bilang="en" class="lang-hidden">Over three years, the team grew from newcomers to a top-tier competitor, breaking their own records along the way. More and more alumni joined, making the team stronger — and the bonds between alumni abroad even deeper.</p>
                 </div>
             </div>
 
-            <!-- Timeline -->
+            <!-- Achievements Timeline -->
             <div class="timeline" id="achievements">
-                <!-- 2023 -->
-                <div class="timeline-item animate-on-scroll">
-                    <div class="timeline-marker">2023</div>
-                    <div class="timeline-content">
-                        <h3 data-i18n="timeline.2023.title">三校联队的第一桨，突破重围</h3>
-                        <p data-i18n="timeline.2023.desc">首次参赛时，几乎全员都是龙舟新手，缺乏经验、器材有限。大家白天忙碌于工作，夜晚和周末便扎进训练场，从握桨姿势、起划节奏到团队配合都从零学起，手上磨起的水泡成了最初的勋章。</p>
-                        <div class="timeline-stats">
-                            <div class="stat">
-                                <span class="stat-value">2:33</span>
-                                <span class="stat-label" data-i18n="timeline.2023.stat1">500米用时</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-value">33/64</span>
-                                <span class="stat-label" data-i18n="timeline.2023.stat2">排名进步</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <h2 class="section-title">🏆 <span data-bilang="zh">我们的荣耀时刻</span><span data-bilang="en" class="lang-hidden">Our Glory Moments</span></h2>
 
                 <!-- 2024 -->
                 <div class="timeline-item animate-on-scroll">
                     <div class="timeline-marker">2024</div>
                     <div class="timeline-content">
-                        <h3 data-i18n="timeline.2024.title">稳步进阶，实力初现</h3>
-                        <p data-i18n="timeline.2024.desc">第二年，龙舟队再次整装出征。这一次，他们不再是稚嫩的新手队，而是一支目标明确、分工有序、节奏整齐的战斗集体。队伍稳居赛会中上游，展现出明显的进步。</p>
+                        <h3><span data-bilang="zh">疫后首战</span><span data-bilang="en" class="lang-hidden">Return After the Pandemic</span></h3>
+                        <p data-bilang="zh">药大 &amp; 南大校友联合组队，斩获铜牌，宣告王者归来！</p>
+                        <p data-bilang="en" class="lang-hidden">CPU &amp; NJU alumni reunited and came back with a bronze medal — a triumphant return!</p>
                         <div class="timeline-stats">
-                            <div class="stat">
-                                <span class="stat-value">2:10</span>
-                                <span class="stat-label" data-i18n="timeline.2024.stat1">500米用时</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-value">↑23秒</span>
-                                <span class="stat-label" data-i18n="timeline.2024.stat2">较去年提升</span>
+                            <div class="stat highlight">
+                                <span class="stat-value">🥉</span>
+                                <span class="stat-label"><span data-bilang="zh">铜牌</span><span data-bilang="en" class="lang-hidden">Bronze Medal</span></span>
                             </div>
                         </div>
                     </div>
@@ -106,70 +158,100 @@
                 <div class="timeline-item animate-on-scroll">
                     <div class="timeline-marker">2025</div>
                     <div class="timeline-content">
-                        <h3 data-i18n="timeline.2025.title">突破纪录，首夺金牌</h3>
-                        <p data-i18n="timeline.2025.desc">队伍真正意义上的飞跃之年。六月的波士顿龙舟赛，500米项目用时创造队史新高；在最多参赛队伍的一届，共72支队中总排名显著提升。最终在罗德岛赛场首次登上领奖台，斩获队史第一枚金牌！</p>
+                        <h3><span data-bilang="zh">三校联队</span><span data-bilang="en" class="lang-hidden">Three Schools Unite</span></h3>
+                        <p data-bilang="zh">药大、南大、中科大三校首次联手，罗德岛夏季赛与中大组队首次登上领奖台，斩获队第一枚金牌！</p>
+                        <p data-bilang="en" class="lang-hidden">CPU, NJU, and USTC joined forces for the first time. At the Rhode Island Summer Race, together with Zhongshan team, they reached the podium for the first time ever — bringing home their first gold medal!</p>
                         <div class="timeline-stats">
-                            <div class="stat">
-                                <span class="stat-value">52.63s</span>
-                                <span class="stat-label" data-i18n="timeline.2025.stat1">200米纪录</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat-value">15/72</span>
-                                <span class="stat-label" data-i18n="timeline.2025.stat2">波士顿排名</span>
-                            </div>
                             <div class="stat highlight">
                                 <span class="stat-value">🥇</span>
-                                <span class="stat-label" data-i18n="timeline.2025.stat3">罗德岛金牌</span>
+                                <span class="stat-label"><span data-bilang="zh">罗德岛金牌</span><span data-bilang="en" class="lang-hidden">Rhode Island Gold</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2026 -->
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-marker">2026</div>
+                    <div class="timeline-content">
+                        <h3><span data-bilang="zh">全新起航</span><span data-bilang="en" class="lang-hidden">A New Beginning</span></h3>
+                        <p data-bilang="zh">第三届征战在即，等你来，续写传奇！</p>
+                        <p data-bilang="en" class="lang-hidden">Our third season is on the horizon. Come join us and help write the next chapter!</p>
+                        <div class="timeline-stats">
+                            <div class="stat highlight">
+                                <span class="stat-value">🚀</span>
+                                <span class="stat-label"><span data-bilang="zh">招新进行中</span><span data-bilang="en" class="lang-hidden">Recruiting Now</span></span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Photo Gallery -->
-            <h3 class="gallery-title" data-i18n="gallery.title">比赛精彩瞬间</h3>
-            <div class="gallery-grid">
-                <!-- 2024 Training Video -->
-                <div class="gallery-item animate-on-scroll video-item" data-full="images/gallery/full/2024-stage.MP4" data-type="video">
-                    <video src="images/gallery/full/2024-stage.MP4" alt="2024舞台表演" loading="lazy" controls style="width: 100%; height: 100%; object-fit: cover;"></video>
-                    <div class="video-play-icon">▶</div>
-                </div>
+            <!-- Why Join -->
+            <div class="why-join animate-on-scroll" style="margin: 3rem 0;">
+                <h2 class="section-title">💪 <span data-bilang="zh">为什么加入我们？</span><span data-bilang="en" class="lang-hidden">Why Join Us?</span></h2>
+                <ul style="list-style:none; padding:0; font-size:1.05rem; line-height:2.2;">
+                    <li>✅ <strong><span data-bilang="zh">十次系统训练</span><span data-bilang="en" class="lang-hidden">10 structured training sessions</span></strong><span data-bilang="zh">——从零基础到桨手，教练全程指导</span><span data-bilang="en" class="lang-hidden"> — from zero to paddler, with full coach guidance</span></li>
+                    <li>✅ <strong><span data-bilang="zh">每周一次相聚</span><span data-bilang="en" class="lang-hidden">Weekly meetups</span></strong><span data-bilang="zh">——比任何饭局都更能拉近彼此距离</span><span data-bilang="en" class="lang-hidden"> — better bonding than any dinner party</span></li>
+                    <li>✅ <strong><span data-bilang="zh">附赠瘦身效果</span><span data-bilang="en" class="lang-hidden">Free fitness bonus</span></strong><span data-bilang="zh">——划一个赛季，收获马甲线/人鱼线</span><span data-bilang="en" class="lang-hidden"> — paddle a season, earn those abs</span></li>
+                    <li>✅ <strong><span data-bilang="zh">跨校校友圈</span><span data-bilang="en" class="lang-hidden">Cross-school alumni network</span></strong><span data-bilang="zh">——药大、南大、中科大，夏训和中山，多校精英同行</span><span data-bilang="en" class="lang-hidden"> — CPU, NJU, USTC elites paddling side by side</span></li>
+                </ul>
+            </div>
 
-                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2024training.JPG">
+            <!-- Who We Need -->
+            <div class="who-we-need animate-on-scroll" style="margin: 3rem 0;">
+                <h2 class="section-title">🙋 <span data-bilang="zh">我们需要你！</span><span data-bilang="en" class="lang-hidden">We Need You!</span></h2>
+                <p style="font-size:1.05rem; margin-bottom:1rem;"><span data-bilang="zh">如果你是：</span><span data-bilang="en" class="lang-hidden">If you are:</span></p>
+                <ul style="list-style:none; padding:0; font-size:1.05rem; line-height:2.2;">
+                    <li>🛶 <strong><span data-bilang="zh">下水桨手</span><span data-bilang="en" class="lang-hidden">Paddler</span></strong><span data-bilang="zh">——零基础？没关系！我们有耐心教练和互助氛围</span><span data-bilang="en" class="lang-hidden"> — no experience? No problem! Patient coaches and a supportive team await</span></li>
+                    <li>📦 <strong><span data-bilang="zh">后勤志愿者</span><span data-bilang="en" class="lang-hidden">Logistics Volunteer</span></strong><span data-bilang="zh">——比赛当天订餐、物资管理、摄影记录</span><span data-bilang="en" class="lang-hidden"> — food, gear management, and photography on race day</span></li>
+                    <li>📣 <strong><span data-bilang="zh">啦啦队成员</span><span data-bilang="en" class="lang-hidden">Cheerleader</span></strong><span data-bilang="zh">——带上家人朋友，来赛场为我们呐喊！</span><span data-bilang="en" class="lang-hidden"> — bring family and friends to cheer us on at the race!</span></li>
+                </ul>
+                <div style="margin-top:2rem; text-align:center;">
+                    <a href="https://forms.gle/a2DTriWuzZFnWLLSA" target="_blank" class="hero-cta hero-cta-signup" style="display:inline-block;">
+                        👉 <span data-bilang="zh">填写报名表</span><span data-bilang="en" class="lang-hidden">Sign Up Now</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Photo Gallery -->
+            <h3 class="gallery-title"><span data-bilang="zh">比赛精彩瞬间</span><span data-bilang="en" class="lang-hidden">Race Highlights</span></h3>
+            <div class="gallery-grid" id="galleryGrid">
+                <div class="gallery-item animate-on-scroll video-item" data-full="images/gallery/full/2024-stage.MP4" data-type="video">
+                    <video src="images/gallery/full/2024-stage.MP4" loading="lazy" controls style="width:100%;height:100%;object-fit:cover;"></video>
+                </div>
+                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2024training.JPG" data-type="image">
                     <img src="images/gallery/full/2024training.JPG" alt="2024训练" loading="lazy">
                 </div>
-                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2024group.JPG">
+                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2024group.JPG" data-type="image">
                     <img src="images/gallery/full/2024group.JPG" alt="2024合照" loading="lazy">
                 </div>
-                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2024race.JPG">
+                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2024race.JPG" data-type="image">
                     <img src="images/gallery/full/2024race.JPG" alt="2024比赛" loading="lazy">
                 </div>
-                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2024group_stage.JPG">
+                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2024group_stage.JPG" data-type="image">
                     <img src="images/gallery/full/2024group_stage.JPG" alt="2024舞台合照" loading="lazy">
                 </div>
-                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2024-medal.JPG">
+                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2024-medal.JPG" data-type="image">
                     <img src="images/gallery/full/2024-medal.JPG" alt="2024奖牌" loading="lazy">
                 </div>
-                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2024winning.JPG">
+                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2024winning.JPG" data-type="image">
                     <img src="images/gallery/full/2024winning.JPG" alt="2024胜利" loading="lazy">
                 </div>
-                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2024_stage2.JPG">
+                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2024_stage2.JPG" data-type="image">
                     <img src="images/gallery/full/2024_stage2.JPG" alt="2024舞台" loading="lazy">
                 </div>
-                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2025group.JPG">
+                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2025group.JPG" data-type="image">
                     <img src="images/gallery/full/2025group.JPG" alt="2025合照" loading="lazy">
                 </div>
-                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2025CPU.JPG">
+                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2025CPU.JPG" data-type="image">
                     <img src="images/gallery/full/2025CPU.JPG" alt="2025CPU" loading="lazy">
                 </div>
-                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2025-boat.JPG">
+                <div class="gallery-item animate-on-scroll" data-full="images/gallery/full/2025-boat.JPG" data-type="image">
                     <img src="images/gallery/full/2025-boat.JPG" alt="2025龙舟" loading="lazy">
                 </div>
-
-                <!-- 2025 Training Video -->
                 <div class="gallery-item animate-on-scroll video-item" data-full="images/gallery/full/2025-training.MOV" data-type="video">
-                    <video src="images/gallery/full/2025-training.MOV" alt="2025训练" loading="lazy" controls style="width: 100%; height: 100%; object-fit: cover;"></video>
-                    <div class="video-play-icon">▶</div>
+                    <video src="images/gallery/full/2025-training.MOV" loading="lazy" controls style="width:100%;height:100%;object-fit:cover;"></video>
                 </div>
             </div>
         </div>
@@ -178,37 +260,14 @@
     <!-- Sponsors Section -->
     <section class="section sponsors" id="sponsors">
         <div class="container">
-            <h2 class="section-title" data-i18n="sponsors.title">我们的赞助商</h2>
-            <p class="sponsors-subtitle" data-i18n="sponsors.subtitle">感谢以下赞助商的支持</p>
-            
+            <h2 class="section-title"><span data-bilang="zh">我们的赞助商</span><span data-bilang="en" class="lang-hidden">Our Sponsors</span></h2>
+            <p class="sponsors-subtitle"><span data-bilang="zh">感谢以下赞助商的支持</span><span data-bilang="en" class="lang-hidden">Thank you to our sponsors</span></p>
             <div class="sponsors-grid">
-                <!-- Sponsor 1 -->
-                <div class="sponsor-card animate-on-scroll">
-                    <div class="sponsor-logo">
-                        <img src="images/merch/sponsor1.JPG" alt="Sponsor" loading="lazy">
-                    </div>
-                </div>
-
-                <!-- Sponsor 2 -->
-                <div class="sponsor-card animate-on-scroll">
-                    <div class="sponsor-logo">
-                        <img src="images/merch/sponsor2.JPG" alt="Sponsor" loading="lazy">
-                    </div>
-                </div>
-
-                <!-- Sponsor 3 -->
-                <div class="sponsor-card animate-on-scroll">
-                    <div class="sponsor-logo">
-                        <img src="images/merch/sponsor3.PNG" alt="Sponsor" loading="lazy">
-                    </div>
-                </div>
-
-                <!-- Sponsor 4 -->
-                <div class="sponsor-card animate-on-scroll">
-                    <div class="sponsor-logo">
-                        <img src="images/merch/sponsor4.JPG" alt="Sponsor" loading="lazy">
-                    </div>
-                </div>
+                <div class="sponsor-card animate-on-scroll"><div class="sponsor-logo"><img src="images/merch/sponsor1.JPG" alt="Sponsor" loading="lazy"></div></div>
+                <div class="sponsor-card animate-on-scroll"><div class="sponsor-logo"><img src="images/merch/sponsor2.JPG" alt="Sponsor" loading="lazy"></div></div>
+                <div class="sponsor-card animate-on-scroll"><div class="sponsor-logo"><img src="images/merch/sponsor3.PNG" alt="Sponsor" loading="lazy"></div></div>
+                <div class="sponsor-card animate-on-scroll"><div class="sponsor-logo"><img src="images/merch/sponsor4.JPG" alt="Sponsor" loading="lazy"></div></div>
+                <div class="sponsor-card animate-on-scroll"><div class="sponsor-logo"><img src="images/merch/sponsor5.JPG" alt="Sponsor" loading="lazy"></div></div>
             </div>
         </div>
     </section>
@@ -216,17 +275,18 @@
     <!-- Merchandise Section -->
     <section class="section merch" id="merch">
         <div class="container">
-            <h2 class="section-title" data-i18n="merch.title">队伍周边</h2>
+            <h2 class="section-title"><span data-bilang="zh">队伍周边</span><span data-bilang="en" class="lang-hidden">Team Merch</span></h2>
             <div class="merch-grid">
-                <!-- Jersey -->
                 <div class="merch-card animate-on-scroll">
                     <div class="merch-image merch-zoomable" onclick="zoomMerch(this,event)">
                         <img src="images/merch/Jersey.JPG" alt="队服" loading="lazy">
                     </div>
                     <div class="merch-info">
-                        <h4 data-i18n="merch.jersey.name">队服</h4>
+                        <h4><span data-bilang="zh">队服</span><span data-bilang="en" class="lang-hidden">Team Jersey</span></h4>
                         <p class="merch-price">$35</p>
-                        <button class="add-to-cart-btn" onclick="addToCart('jersey','队服','Jersey',35,'size')" data-i18n="merch.addToCart">加入购物车</button>
+                        <button class="add-to-cart-btn" onclick="addToCart('jersey','队服','Jersey',35,'size')">
+                            <span data-bilang="zh">加入购物车</span><span data-bilang="en" class="lang-hidden">Add to Cart</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -239,12 +299,12 @@
             <div class="footer-logo">
                 <img src="images/logo/logo.png" alt="Team Logo">
                 <div>
-                    <p class="footer-name" data-i18n="footer.name">三校联队龙舟队</p>
-                    <p class="footer-org" data-i18n="footer.org">NJU、USTC、CPU新英格兰校友龙舟队</p>
+                    <p class="footer-name"><span data-bilang="zh">三校联队龙舟队</span><span data-bilang="en" class="lang-hidden">Three Schools Dragon Boat Team</span></p>
+                    <p class="footer-org">NJU · USTC · CPU New England Alumni Dragon Boat Team</p>
                 </div>
             </div>
-            <p class="footer-tagline" data-i18n="footer.tagline">奋楫前行，奔赴更远的海</p>
-            <p class="footer-contact" data-i18n="footer.contact">New England Alumni Dragon Boat Team</p>
+            <p class="footer-tagline"><span data-bilang="zh">奋楫前行，奔赴更远的海</span><span data-bilang="en" class="lang-hidden">Paddle forward, reach farther shores</span></p>
+            <p class="footer-contact">New England Alumni Dragon Boat Team</p>
         </div>
     </footer>
 
@@ -255,33 +315,37 @@
 
     <!-- Lightbox -->
     <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" aria-label="Close">&times;</button>
-        <button class="lightbox-prev" aria-label="Previous">&#10094;</button>
-        <button class="lightbox-next" aria-label="Next">&#10095;</button>
+        <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+        <button class="lightbox-prev" onclick="lightboxNav(-1)" aria-label="Previous">&#10094;</button>
+        <button class="lightbox-next" onclick="lightboxNav(1)" aria-label="Next">&#10095;</button>
         <div class="lightbox-content">
             <img src="" alt="" id="lightboxImg">
         </div>
     </div>
 
     <!-- Cart Notification -->
-    <div class="cart-notification" id="cartNotification" data-i18n="cart.added">已加入购物车</div>
+    <div class="cart-notification" id="cartNotification">
+        <span data-bilang="zh">已加入购物车</span><span data-bilang="en" class="lang-hidden">Added to cart</span>
+    </div>
 
     <!-- Cart Drawer -->
     <div class="cart-drawer" id="cartDrawer">
         <div class="cart-drawer-header">
-            <h3 data-i18n="cart.title">购物车</h3>
+            <h3><span data-bilang="zh">购物车</span><span data-bilang="en" class="lang-hidden">Cart</span></h3>
             <button class="cart-drawer-close" onclick="closeCart()">&times;</button>
         </div>
         <div class="cart-drawer-content">
-            <p class="cart-empty" id="cartEmpty" data-i18n="cart.empty">购物车是空的</p>
+            <p class="cart-empty" id="cartEmpty"><span data-bilang="zh">购物车是空的</span><span data-bilang="en" class="lang-hidden">Your cart is empty</span></p>
             <div id="cartItems"></div>
         </div>
         <div class="cart-drawer-footer">
             <div class="cart-total-row">
-                <span data-i18n="cart.total">合计</span>
+                <span><span data-bilang="zh">合计</span><span data-bilang="en" class="lang-hidden">Total</span></span>
                 <span id="cartTotal">$0</span>
             </div>
-            <button class="cart-checkout-btn" id="cartCheckoutBtn" onclick="openCheckout()" data-i18n="cart.checkout">去结算</button>
+            <button class="cart-checkout-btn" id="cartCheckoutBtn" onclick="openCheckout()">
+                <span data-bilang="zh">去结算</span><span data-bilang="en" class="lang-hidden">Checkout</span>
+            </button>
         </div>
     </div>
     <div class="cart-drawer-overlay" onclick="closeCart()"></div>
@@ -291,7 +355,7 @@
         <div class="modal-box">
             <h4 id="variantModalTitle">选择</h4>
             <div class="variant-options" id="variantOptions"></div>
-            <button class="modal-cancel" onclick="closeVariantModal()" data-i18n="cart.cancel">取消</button>
+            <button class="modal-cancel" onclick="closeVariantModal()"><span data-bilang="zh">取消</span><span data-bilang="en" class="lang-hidden">Cancel</span></button>
         </div>
     </div>
 
@@ -299,28 +363,25 @@
     <div class="modal-overlay" id="checkoutModal" onclick="if(event.target===this)closeCheckout()">
         <div class="modal-box checkout-box">
             <button class="modal-close-btn" onclick="closeCheckout()">&times;</button>
-            <h3 data-i18n="checkout.title">确认订单</h3>
-
+            <h3><span data-bilang="zh">确认订单</span><span data-bilang="en" class="lang-hidden">Confirm Order</span></h3>
             <div class="checkoutForm">
                 <div id="checkoutSummary" class="checkout-summary"></div>
-
                 <form onsubmit="submitOrder(event)">
                     <div class="form-group">
-                        <label data-i18n="checkout.name">姓名</label>
+                        <label><span data-bilang="zh">姓名</span><span data-bilang="en" class="lang-hidden">Name</span></label>
                         <input type="text" name="customerName" required>
                     </div>
                     <div class="form-group">
-                        <label data-i18n="checkout.contact">邮箱 / 手机号</label>
+                        <label><span data-bilang="zh">邮箱 / 手机号</span><span data-bilang="en" class="lang-hidden">Email / Phone</span></label>
                         <input type="text" name="customerContact" required>
                     </div>
                     <div class="form-group">
-                        <label data-i18n="checkout.payMethod">付款方式</label>
+                        <label><span data-bilang="zh">付款方式</span><span data-bilang="en" class="lang-hidden">Payment Method</span></label>
                         <select name="paymentMethod" required>
                             <option value="Venmo">Venmo</option>
                             <option value="Zelle">Zelle</option>
                         </select>
                     </div>
-
                     <div class="payment-info">
                         <div class="payment-option">
                             <h5>Venmo</h5>
@@ -329,27 +390,116 @@
                         <div class="payment-option">
                             <h5>Zelle</h5>
                             <p>Ermin Zhao</p>
-                            <p>erminzhao@hotmail.com</p>
+                            <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="96f3e4fbfff8ecfef7f9d6fef9e2fbf7fffab8f5f9fb">[email&#160;protected]</a></p>
                         </div>
                     </div>
-
-                    <p class="checkout-note" data-i18n="checkout.note">请先通过 Venmo 或 Zelle 完成付款，再提交订单。</p>
-                    <button type="submit" class="checkout-submit-btn" data-i18n="checkout.submit">确认下单</button>
+                    <p class="checkout-note">
+                        <span data-bilang="zh">请先通过 Venmo 或 Zelle 完成付款，再提交订单。</span>
+                        <span data-bilang="en" class="lang-hidden">Please complete payment via Venmo or Zelle before submitting your order.</span>
+                    </p>
+                    <button type="submit" class="checkout-submit-btn">
+                        <span data-bilang="zh">确认下单</span><span data-bilang="en" class="lang-hidden">Place Order</span>
+                    </button>
                 </form>
             </div>
-
             <div id="checkoutSuccess" style="display:none" class="checkout-success">
                 <div class="success-icon">✓</div>
-                <h4 data-i18n="checkout.successTitle">订单已提交！</h4>
-                <p data-i18n="checkout.successMsg">我们已收到您的订单信息，确认付款后会尽快安排发货。</p>
-                <button onclick="closeCheckout()" class="checkout-submit-btn" data-i18n="checkout.close">关闭</button>
+                <h4><span data-bilang="zh">订单已提交！</span><span data-bilang="en" class="lang-hidden">Order Submitted!</span></h4>
+                <p><span data-bilang="zh">我们已收到您的订单信息，确认付款后会尽快安排发货。</span><span data-bilang="en" class="lang-hidden">We've received your order and will arrange shipping after confirming payment.</span></p>
+                <button onclick="closeCheckout()" class="checkout-submit-btn">
+                    <span data-bilang="zh">关闭</span><span data-bilang="en" class="lang-hidden">Close</span>
+                </button>
             </div>
         </div>
     </div>
 
-    <script src="js/i18n.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/i18n.js"></script>
     <script src="js/cart.js"></script>
-    <script src="js/gallery.js"></script>
     <script src="js/main.js"></script>
+
+    <!-- Inline: Bilingual toggle + Lightbox -->
+    <script>
+    // ── Bilingual Toggle ─────────────────────────────────────────────
+    // Uses data-bilang="zh"/"en" — completely separate from i18n.js
+    var siteLang = 'zh';
+
+    function applyLang() {
+        document.querySelectorAll('[data-bilang]').forEach(function(el) {
+            if (el.getAttribute('data-bilang') === siteLang) {
+                el.classList.remove('lang-hidden');
+            } else {
+                el.classList.add('lang-hidden');
+            }
+        });
+        document.getElementById('langToggleBtn').textContent = (siteLang === 'zh') ? 'EN' : '中';
+    }
+
+    function toggleLanguage() {
+        siteLang = (siteLang === 'zh') ? 'en' : 'zh';
+        applyLang();
+    }
+
+    // ── Lightbox ──────────────────────────────────────────────────────
+    var galleryImages = [];
+    var currentLbIndex = 0;
+
+    function buildGalleryIndex() {
+        galleryImages = [];
+        document.querySelectorAll('#galleryGrid .gallery-item[data-type="image"]').forEach(function(item) {
+            galleryImages.push(item.getAttribute('data-full'));
+        });
+    }
+
+    function openLightbox(src) {
+        currentLbIndex = galleryImages.indexOf(src);
+        document.getElementById('lightboxImg').src = src;
+        document.getElementById('lightbox').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        document.getElementById('lightbox').classList.remove('active');
+        document.getElementById('lightboxImg').src = '';
+        document.body.style.overflow = '';
+    }
+
+    function lightboxNav(dir) {
+        if (!galleryImages.length) return;
+        currentLbIndex = (currentLbIndex + dir + galleryImages.length) % galleryImages.length;
+        document.getElementById('lightboxImg').src = galleryImages[currentLbIndex];
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Apply correct language on load
+        applyLang();
+
+        // Gallery lightbox
+        buildGalleryIndex();
+        document.querySelectorAll('#galleryGrid .gallery-item[data-type="image"]').forEach(function(item) {
+            item.addEventListener('click', function() {
+                openLightbox(this.getAttribute('data-full'));
+            });
+        });
+
+        // Close lightbox on background click
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) closeLightbox();
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (!document.getElementById('lightbox').classList.contains('active')) return;
+            if (e.key === 'Escape')     closeLightbox();
+            if (e.key === 'ArrowLeft')  lightboxNav(-1);
+            if (e.key === 'ArrowRight') lightboxNav(1);
+        });
+
+        // Scroll-in animation
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.animate-on-scroll').forEach(function(el) { observer.observe(el); });
+    });
+    </script>
 </body>
 </html>
